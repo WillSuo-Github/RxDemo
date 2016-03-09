@@ -1,0 +1,18 @@
+platform :ios, 8.0
+use_frameworks!
+
+target 'RxGank' do
+  pod 'Moya'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'RxDataSources'
+  pod 'Moya/RxSwift'
+  pod 'ObjectMapper'
+  pod 'Kingfisher'
+  pod 'SwiftDate'
+  pod 'XCGLogger'
+  pod 'TransitionTreasury'
+  pod 'TransitionTreasury/Animations'
+  pod 'SnapKit'
+  pod 'SwiftyUserDefaults'
+end

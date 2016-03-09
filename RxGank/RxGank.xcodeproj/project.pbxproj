@@ -1,0 +1,491 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		26344B8D1C8FABD8008ED4F5 /* GankTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26344B8C1C8FABD8008ED4F5 /* GankTransitionAnimation.swift */; };
+		26344B8F1C8FB7A2008ED4F5 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26344B8E1C8FB7A2008ED4F5 /* Configuration.swift */; };
+		265410921C8BE7EA00FBA58C /* TechViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265410911C8BE7EA00FBA58C /* TechViewController.swift */; };
+		267261A81C82A60A00078037 /* GirlTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267261A71C82A60A00078037 /* GirlTableViewController.swift */; };
+		267261AA1C82A70F00078037 /* GirlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267261A91C82A70F00078037 /* GirlTableViewCell.swift */; };
+		267261AE1C82BDBD00078037 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267261AD1C82BDBD00078037 /* ContentViewController.swift */; };
+		26735FA01C832DB9008B1B52 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26735F9F1C832DB9008B1B52 /* DetailTableViewCell.swift */; };
+		2684901E1C829B5300378065 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268490101C829B5300378065 /* AppDelegate.swift */; };
+		2684901F1C829B5300378065 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 268490111C829B5300378065 /* Assets.xcassets */; };
+		268490201C829B5300378065 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 268490121C829B5300378065 /* LaunchScreen.storyboard */; };
+		268490211C829B5300378065 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 268490141C829B5300378065 /* Main.storyboard */; };
+		268490291C829C4300378065 /* GankProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268490241C829C4300378065 /* GankProvider.swift */; };
+		2684902B1C829C4300378065 /* SwiftyUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268490261C829C4300378065 /* SwiftyUserDefaults.swift */; };
+		2684902C1C829C4300378065 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268490271C829C4300378065 /* Logger.swift */; };
+		2684902D1C829C4300378065 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268490281C829C4300378065 /* NetworkLogger.swift */; };
+		2684902F1C829D5300378065 /* Observable+Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2684902E1C829D5300378065 /* Observable+Logger.swift */; };
+		268490311C829F7100378065 /* GankModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268490301C829F7100378065 /* GankModel.swift */; };
+		268490361C82A03E00378065 /* RefreshExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268490321C82A03E00378065 /* RefreshExtension.swift */; };
+		268490371C82A03E00378065 /* UIStoryBoardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268490331C82A03E00378065 /* UIStoryBoardExtension.swift */; };
+		268490381C82A03E00378065 /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268490341C82A03E00378065 /* Response+ObjectMapper.swift */; };
+		268490391C82A03E00378065 /* Observable+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268490351C82A03E00378065 /* Observable+ObjectMapper.swift */; };
+		2D62C107405661CFEAFA2BD1 /* Pods_RxGank.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5104E7F4EA11218982F4CFC2 /* Pods_RxGank.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		26344B8C1C8FABD8008ED4F5 /* GankTransitionAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GankTransitionAnimation.swift; sourceTree = "<group>"; };
+		26344B8E1C8FB7A2008ED4F5 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		265410911C8BE7EA00FBA58C /* TechViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TechViewController.swift; sourceTree = "<group>"; };
+		267261A71C82A60A00078037 /* GirlTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GirlTableViewController.swift; sourceTree = "<group>"; };
+		267261A91C82A70F00078037 /* GirlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GirlTableViewCell.swift; sourceTree = "<group>"; };
+		267261AD1C82BDBD00078037 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		26735F9F1C832DB9008B1B52 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
+		26848FE41C8294CD00378065 /* RxGank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxGank.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		268490101C829B5300378065 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		268490111C829B5300378065 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		268490131C829B5300378065 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		268490151C829B5300378065 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		268490181C829B5300378065 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		268490241C829C4300378065 /* GankProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GankProvider.swift; sourceTree = "<group>"; };
+		268490261C829C4300378065 /* SwiftyUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyUserDefaults.swift; sourceTree = "<group>"; };
+		268490271C829C4300378065 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		268490281C829C4300378065 /* NetworkLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
+		2684902E1C829D5300378065 /* Observable+Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+Logger.swift"; sourceTree = "<group>"; };
+		268490301C829F7100378065 /* GankModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GankModel.swift; sourceTree = "<group>"; };
+		268490321C82A03E00378065 /* RefreshExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshExtension.swift; sourceTree = "<group>"; };
+		268490331C82A03E00378065 /* UIStoryBoardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoryBoardExtension.swift; sourceTree = "<group>"; };
+		268490341C82A03E00378065 /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
+		268490351C82A03E00378065 /* Observable+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+ObjectMapper.swift"; sourceTree = "<group>"; };
+		4E99E28E60F5D1FD9187BACB /* Pods-RxGank.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxGank.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxGank/Pods-RxGank.debug.xcconfig"; sourceTree = "<group>"; };
+		5104E7F4EA11218982F4CFC2 /* Pods_RxGank.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxGank.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C509040D8A09894888E2873 /* Pods-RxGank.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxGank.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxGank/Pods-RxGank.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		26848FE11C8294CD00378065 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D62C107405661CFEAFA2BD1 /* Pods_RxGank.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		016AB827B825D6FEF25E040E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5104E7F4EA11218982F4CFC2 /* Pods_RxGank.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		26848FDB1C8294CD00378065 = {
+			isa = PBXGroup;
+			children = (
+				2684900F1C829B5300378065 /* RxGank */,
+				26848FE51C8294CD00378065 /* Products */,
+				F6EC683D3AC3BF39F463482A /* Pods */,
+				016AB827B825D6FEF25E040E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		26848FE51C8294CD00378065 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				26848FE41C8294CD00378065 /* RxGank.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2684900F1C829B5300378065 /* RxGank */ = {
+			isa = PBXGroup;
+			children = (
+				268490101C829B5300378065 /* AppDelegate.swift */,
+				268490111C829B5300378065 /* Assets.xcassets */,
+				268490121C829B5300378065 /* LaunchScreen.storyboard */,
+				268490141C829B5300378065 /* Main.storyboard */,
+				268490161C829B5300378065 /* Controllers */,
+				268490171C829B5300378065 /* Extensions */,
+				268490181C829B5300378065 /* Info.plist */,
+				268490191C829B5300378065 /* Models */,
+				2684901A1C829B5300378065 /* Utils */,
+				2684901C1C829B5300378065 /* ViewModels */,
+				2684901D1C829B5300378065 /* Views */,
+				26344B8E1C8FB7A2008ED4F5 /* Configuration.swift */,
+			);
+			path = RxGank;
+			sourceTree = "<group>";
+		};
+		268490161C829B5300378065 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				267261A71C82A60A00078037 /* GirlTableViewController.swift */,
+				267261AD1C82BDBD00078037 /* ContentViewController.swift */,
+				265410911C8BE7EA00FBA58C /* TechViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		268490171C829B5300378065 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				268490321C82A03E00378065 /* RefreshExtension.swift */,
+				268490331C82A03E00378065 /* UIStoryBoardExtension.swift */,
+				268490341C82A03E00378065 /* Response+ObjectMapper.swift */,
+				268490351C82A03E00378065 /* Observable+ObjectMapper.swift */,
+				2684902E1C829D5300378065 /* Observable+Logger.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		268490191C829B5300378065 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				268490301C829F7100378065 /* GankModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2684901A1C829B5300378065 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				268490241C829C4300378065 /* GankProvider.swift */,
+				268490261C829C4300378065 /* SwiftyUserDefaults.swift */,
+				268490271C829C4300378065 /* Logger.swift */,
+				268490281C829C4300378065 /* NetworkLogger.swift */,
+				26344B8C1C8FABD8008ED4F5 /* GankTransitionAnimation.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		2684901C1C829B5300378065 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2684901D1C829B5300378065 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				267261A91C82A70F00078037 /* GirlTableViewCell.swift */,
+				26735F9F1C832DB9008B1B52 /* DetailTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F6EC683D3AC3BF39F463482A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4E99E28E60F5D1FD9187BACB /* Pods-RxGank.debug.xcconfig */,
+				9C509040D8A09894888E2873 /* Pods-RxGank.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		26848FE31C8294CD00378065 /* RxGank */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26848FF61C8294CD00378065 /* Build configuration list for PBXNativeTarget "RxGank" */;
+			buildPhases = (
+				DD1F472F97FBEC23E500A6AF /* Check Pods Manifest.lock */,
+				26848FE01C8294CD00378065 /* Sources */,
+				26848FE11C8294CD00378065 /* Frameworks */,
+				26848FE21C8294CD00378065 /* Resources */,
+				DB5D1314AADDD86BEDB86403 /* Embed Pods Frameworks */,
+				54CBAD5AF8A9BF114BC1E45C /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RxGank;
+			productName = RxGank;
+			productReference = 26848FE41C8294CD00378065 /* RxGank.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		26848FDC1C8294CD00378065 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = DianQK;
+				TargetAttributes = {
+					26848FE31C8294CD00378065 = {
+						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = HY634B3FW2;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 26848FDF1C8294CD00378065 /* Build configuration list for PBXProject "RxGank" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 26848FDB1C8294CD00378065;
+			productRefGroup = 26848FE51C8294CD00378065 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				26848FE31C8294CD00378065 /* RxGank */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		26848FE21C8294CD00378065 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				268490211C829B5300378065 /* Main.storyboard in Resources */,
+				2684901F1C829B5300378065 /* Assets.xcassets in Resources */,
+				268490201C829B5300378065 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		54CBAD5AF8A9BF114BC1E45C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxGank/Pods-RxGank-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB5D1314AADDD86BEDB86403 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxGank/Pods-RxGank-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD1F472F97FBEC23E500A6AF /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		26848FE01C8294CD00378065 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				268490391C82A03E00378065 /* Observable+ObjectMapper.swift in Sources */,
+				268490371C82A03E00378065 /* UIStoryBoardExtension.swift in Sources */,
+				2684902D1C829C4300378065 /* NetworkLogger.swift in Sources */,
+				26735FA01C832DB9008B1B52 /* DetailTableViewCell.swift in Sources */,
+				267261AA1C82A70F00078037 /* GirlTableViewCell.swift in Sources */,
+				2684902B1C829C4300378065 /* SwiftyUserDefaults.swift in Sources */,
+				265410921C8BE7EA00FBA58C /* TechViewController.swift in Sources */,
+				2684902C1C829C4300378065 /* Logger.swift in Sources */,
+				267261AE1C82BDBD00078037 /* ContentViewController.swift in Sources */,
+				2684902F1C829D5300378065 /* Observable+Logger.swift in Sources */,
+				268490311C829F7100378065 /* GankModel.swift in Sources */,
+				268490381C82A03E00378065 /* Response+ObjectMapper.swift in Sources */,
+				26344B8F1C8FB7A2008ED4F5 /* Configuration.swift in Sources */,
+				268490291C829C4300378065 /* GankProvider.swift in Sources */,
+				26344B8D1C8FABD8008ED4F5 /* GankTransitionAnimation.swift in Sources */,
+				267261A81C82A60A00078037 /* GirlTableViewController.swift in Sources */,
+				2684901E1C829B5300378065 /* AppDelegate.swift in Sources */,
+				268490361C82A03E00378065 /* RefreshExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		268490121C829B5300378065 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				268490131C829B5300378065 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		268490141C829B5300378065 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				268490151C829B5300378065 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		26848FF41C8294CD00378065 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		26848FF51C8294CD00378065 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		26848FF71C8294CD00378065 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E99E28E60F5D1FD9187BACB /* Pods-RxGank.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "";
+				INFOPLIST_FILE = RxGank/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = org.dianqk.RxGank;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		26848FF81C8294CD00378065 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C509040D8A09894888E2873 /* Pods-RxGank.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "";
+				INFOPLIST_FILE = RxGank/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.dianqk.RxGank;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		26848FDF1C8294CD00378065 /* Build configuration list for PBXProject "RxGank" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26848FF41C8294CD00378065 /* Debug */,
+				26848FF51C8294CD00378065 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		26848FF61C8294CD00378065 /* Build configuration list for PBXNativeTarget "RxGank" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26848FF71C8294CD00378065 /* Debug */,
+				26848FF81C8294CD00378065 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 26848FDC1C8294CD00378065 /* Project object */;
+}
