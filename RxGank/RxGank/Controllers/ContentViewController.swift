@@ -37,6 +37,9 @@ class ContentViewController: UITableViewController {
             .mapObject(DayModel)
             .subscribeNext { [unowned self] model in
                 self.sections.value = model.results.map { ContentSectionModel(model: $0.0, items: $0.1) }
+                if let imageStr = model.results["福利"]?.first?.url {
+                    self.headImageView.kf_setImageWithURL(NSURL(string: imageStr)!)
+                }
             }
             .addDisposableTo(disposeBag)
         
