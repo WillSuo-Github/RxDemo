@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import Kingfisher
+import SwiftDate
 
 enum Action {
     case Refresh
@@ -29,18 +30,18 @@ class GirlTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.dataSource = nil
         tableView.delegate = nil
-        /// 加载 + 下拉刷新 + 加载更多
+        /// 加载 + 下拉刷新 + 加载更多 一种供参考的写法~
         let command: [Observable<LoadMore>] = [
-            Observable.just(false),
+            Observable.just(false), // 可以改成 enum 判断是刷新还是加载更多
             tableView.rx_pullRefresh.map { _ in false },
             tableView.rx_loadRefresh.map { _ in true }
         ]
         
         command.toObservable().merge()
-            .scan(1) { $1 ? $0 + 1 : 1 }
+            .scan(1) { $1 ? $0 + 1 : 1 } // 用 scan 记录加载 page
             .flatMap { page in
                 GankProvider.request(.Category(.福利, 5, page))
                     .mapArray(GankModel).map { (page, $0) }
@@ -51,6 +52,8 @@ class GirlTableViewController: UITableViewController {
                 } else {
                     self.sections.value.append(GirlSectionModel(model: "", items: models ))
                 }
+                self.tableView.stopPullRefresh()
+                self.tableView.stopLoadRefresh() // ==
             }.addDisposableTo(disposeBag)
         
         let tvDataSource = RxTableViewSectionedReloadDataSource<GirlSectionModel>()
@@ -61,14 +64,16 @@ class GirlTableViewController: UITableViewController {
         }
         
         sections.asObservable()
-            .bindTo(tableView.rx_itemsWithDataSource(tvDataSource)).addDisposableTo(disposeBag)
+            .bindTo(tableView.rx_itemsWithDataSource(tvDataSource))
+            .addDisposableTo(disposeBag)
         
-        tableView.rx_modelSelected(IdentitifiableValue<GankModel>).subscribeNext { [unowned self] model in
-            let contentViewController = UIStoryboard(name: .Main).instantiateViewControllerWithClass(ContentViewController)
-            contentViewController
-            self.navigationController?.pushViewController(contentViewController, animated: true)
-            
-        }.addDisposableTo(disposeBag)
+        tableView.rx_modelSelected(IdentitifiableValue<GankModel>)
+            .subscribeNext { [unowned self] model in
+                let contentViewController = UIStoryboard(name: .Main).instantiateViewControllerWithClass(ContentViewController)
+                contentViewController.day = model.value.publishedAt.toDate(.ISO8601Format(.Extended))
+                self.navigationController?.pushViewController(contentViewController, animated: true)
+            }
+            .addDisposableTo(disposeBag)
         
         tableView.addGestureRecognizer(configureSlideGesture())
     }

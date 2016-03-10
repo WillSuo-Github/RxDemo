@@ -15,13 +15,8 @@ class DetailTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        descLabel.preferredMaxLayoutWidth = UIScreen.mainScreen().bounds.size.width - 60
     }
 
 }
