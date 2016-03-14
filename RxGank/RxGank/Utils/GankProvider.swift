@@ -12,7 +12,7 @@ import SwiftDate
 #if DEBUG
 let host = "http://gank.avosapps.com"
 #else
-let host = "http://gank.avosapps.com"
+let host = "http://gank.io"
 #endif
 
 public enum GankCategory: String {

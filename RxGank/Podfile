@@ -16,3 +16,7 @@ target 'RxGank' do
   pod 'SnapKit'
   pod 'SwiftyUserDefaults'
 end
+
+target 'ShareToGank' do
+  pod 'Alamofire'
+end
