@@ -9,6 +9,7 @@
 import UIKit
 import Social
 import Alamofire
+import MobileCoreServices
 
 class ShareViewController: SLComposeServiceViewController {
     
@@ -34,11 +35,15 @@ class ShareViewController: SLComposeServiceViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         let viewController = navigationController!.viewControllers.first!
         let navigationItem = viewController.navigationItem
         navigationItem.leftBarButtonItem?.title = "取消"
         navigationItem.rightBarButtonItem?.title = "分享"
+        
+        charactersRemaining = 10 // 更新需要重新设置 ==
+        
     }
 
     override func isContentValid() -> Bool {
@@ -52,7 +57,7 @@ class ShareViewController: SLComposeServiceViewController {
         inputItem.attachments?.forEach { // 如果用 Rx
             guard let provider = $0 as? NSItemProvider else { return }
             guard let dataType = provider.registeredTypeIdentifiers.first as? String else { return }
-            if dataType == "public.url" {
+            if dataType == kUTTypeURL as String {
                 provider.loadItemForTypeIdentifier(dataType, options: nil) { [unowned self] (secureCoding, error) -> Void in
                     let url: NSURL = secureCoding as! NSURL
                     let parameters = [
@@ -71,6 +76,10 @@ class ShareViewController: SLComposeServiceViewController {
 
         self.extensionContext!.completeRequestReturningItems([], completionHandler: nil)
         
+    }
+    
+    override func loadPreviewView() -> UIView! {
+        return UIView()
     }
 
     override func configurationItems() -> [AnyObject]! {
