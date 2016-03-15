@@ -13,6 +13,7 @@ import Kingfisher
 import SnapKit
 import SafariServices
 import SwiftDate
+import MobileCoreServices
 
 typealias ContentSectionModel = AnimatableSectionModel<String, GankModel>
 
@@ -38,7 +39,9 @@ class ContentViewController: UITableViewController {
             .subscribeNext { [unowned self] model in
                 self.sections.value = model.results.map { ContentSectionModel(model: $0.0, items: $0.1) }
                 if let imageStr = model.results["福利"]?.first?.url {
-                    self.headImageView.kf_setImageWithURL(NSURL(string: imageStr)!)
+                    self.headImageView.kf_setImageWithURL(NSURL(string: imageStr)!, placeholderImage: nil, optionsInfo: nil){ _ in
+                        self.navigationItem.rightBarButtonItem?.enabled = true
+                    }
                 }
             }
             .addDisposableTo(disposeBag)
@@ -64,6 +67,23 @@ class ContentViewController: UITableViewController {
             }.addDisposableTo(disposeBag)
         
         tableView.rx_setDelegate(self)
+
+        navigationItem.rightBarButtonItem?.rx_tap
+            .subscribeNext { [unowned self] in
+                let shareURL = NSURL(string: "http://gank.io/\(self.day!.toString(.Custom("yyyy/MM/dd"))!)")!
+                let itemProvider = NSItemProvider()
+                itemProvider.registerItemForTypeIdentifier(kUTTypeURL as String) {
+                    completionHandler, expectedClass, options in
+                    completionHandler(shareURL, nil)
+                }
+                itemProvider.previewImageHandler = { completionHandler, expectedClass, options in
+                    completionHandler(self.headImageView.image, nil)
+                }
+                // 个人认为这里的 activityItems 应该强制换成 NSItemProvider ，然后我们的 UIActivity 也可以进行统一的检测了~ 这里不统一会很麻烦 ==
+                let vc = UIActivityViewController(activityItems: [self.headImageView.image!, shareURL],
+                    applicationActivities: [GKSafariActivity()])
+                self.presentViewController(vc, animated: true, completion: nil)
+        }.addDisposableTo(disposeBag)
         
     }
 

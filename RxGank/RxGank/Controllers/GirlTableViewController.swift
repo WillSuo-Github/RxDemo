@@ -75,7 +75,7 @@ class GirlTableViewController: UITableViewController {
             }
             .addDisposableTo(disposeBag)
         
-        tableView.addGestureRecognizer(configureSlideGesture())
+        view.addGestureRecognizer(configureSlideGesture())
     }
 
 }

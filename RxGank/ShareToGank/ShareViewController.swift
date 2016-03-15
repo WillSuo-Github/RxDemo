@@ -48,7 +48,8 @@ class ShareViewController: SLComposeServiceViewController {
 
     override func isContentValid() -> Bool {
         // Do validation of contentText and/or NSExtensionContext attachments here
-        return contentText.characters.count >= 5
+        charactersRemaining = 30 - contentText.characters.count
+        return contentText.characters.count >= 5 && charactersRemaining.integerValue <= 30
     }
 
     override func didSelectPost() {
