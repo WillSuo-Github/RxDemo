@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--妹子-->
@@ -115,42 +116,42 @@
                                 <rect key="frame" x="0.0" y="58" width="320" height="397"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TechTableViewCell" rowHeight="50" id="PCB-Ti-h5f" customClass="TechTableViewCell" customModule="RxGank" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TechTableViewCell" id="PCB-Ti-h5f" customClass="TechTableViewCell" customModule="RxGank" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PCB-Ti-h5f" id="uku-ga-2He">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cd3-jV-5a0">
-                                                    <rect key="frame" x="30" y="5" width="260" height="21"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
                                                 <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSz-D4-fuP">
-                                                    <rect key="frame" x="30" y="31" width="33" height="14"/>
+                                                    <rect key="frame" x="30" y="27" width="260" height="14"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="14" id="b9q-ic-W8d"/>
+                                                        <constraint firstAttribute="height" constant="14" id="Y6d-zo-wwT"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                     <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
+                                                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cd3-jV-5a0">
+                                                    <rect key="frame" x="30" y="8" width="260" height="14.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="Cd3-jV-5a0" secondAttribute="trailing" constant="30" id="2FC-DG-Tav"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="HSz-D4-fuP" secondAttribute="trailing" constant="30" id="4fc-wL-cqr"/>
-                                                <constraint firstItem="HSz-D4-fuP" firstAttribute="top" secondItem="Cd3-jV-5a0" secondAttribute="bottom" constant="5" id="7Be-PB-3HK"/>
-                                                <constraint firstItem="Cd3-jV-5a0" firstAttribute="leading" secondItem="uku-ga-2He" secondAttribute="leading" constant="30" id="Wn3-ZT-Dop"/>
-                                                <constraint firstItem="HSz-D4-fuP" firstAttribute="leading" secondItem="uku-ga-2He" secondAttribute="leading" constant="30" id="dPI-HP-e3r"/>
-                                                <constraint firstAttribute="bottom" secondItem="HSz-D4-fuP" secondAttribute="bottom" constant="5" id="lj4-2n-LYT"/>
-                                                <constraint firstItem="Cd3-jV-5a0" firstAttribute="top" secondItem="uku-ga-2He" secondAttribute="top" constant="5" id="vDz-TR-Szd"/>
+                                                <constraint firstItem="Cd3-jV-5a0" firstAttribute="top" secondItem="uku-ga-2He" secondAttribute="topMargin" id="4yn-FR-B3P"/>
+                                                <constraint firstAttribute="trailing" secondItem="Cd3-jV-5a0" secondAttribute="trailing" constant="30" id="DUE-x2-C2i"/>
+                                                <constraint firstItem="HSz-D4-fuP" firstAttribute="leading" secondItem="uku-ga-2He" secondAttribute="leading" constant="30" id="Jf9-fJ-Auc"/>
+                                                <constraint firstItem="HSz-D4-fuP" firstAttribute="top" secondItem="Cd3-jV-5a0" secondAttribute="bottom" constant="5" id="K4Q-Sc-kfH"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="HSz-D4-fuP" secondAttribute="bottom" id="haB-n8-sCf"/>
+                                                <constraint firstAttribute="trailing" secondItem="HSz-D4-fuP" secondAttribute="trailing" constant="30" id="rnX-RT-qTQ"/>
+                                                <constraint firstItem="Cd3-jV-5a0" firstAttribute="leading" secondItem="uku-ga-2He" secondAttribute="leading" constant="30" id="wyc-8g-GDb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -168,10 +169,10 @@
                             <constraint firstAttribute="trailing" secondItem="tsT-22-WnU" secondAttribute="trailing" id="29u-YU-7Fz"/>
                             <constraint firstItem="tsT-22-WnU" firstAttribute="top" secondItem="gUH-R4-bAi" secondAttribute="bottom" constant="15" id="5ej-98-aVJ"/>
                             <constraint firstItem="tsT-22-WnU" firstAttribute="leading" secondItem="gKr-Pp-6Gr" secondAttribute="leading" id="I0B-FD-Gtg"/>
+                            <constraint firstAttribute="trailing" secondItem="gUH-R4-bAi" secondAttribute="trailing" constant="30" id="PfB-M3-zfs"/>
                             <constraint firstItem="gUH-R4-bAi" firstAttribute="top" secondItem="apg-XQ-9a5" secondAttribute="bottom" constant="15" id="QTX-iX-yuG"/>
-                            <constraint firstItem="gUH-R4-bAi" firstAttribute="leading" secondItem="gKr-Pp-6Gr" secondAttribute="leading" constant="30" id="YAF-yA-TH9"/>
                             <constraint firstItem="xhk-rs-eor" firstAttribute="top" secondItem="tsT-22-WnU" secondAttribute="bottom" id="bxV-fD-Hiw"/>
-                            <constraint firstAttribute="trailing" secondItem="gUH-R4-bAi" secondAttribute="trailing" constant="30" id="ijK-63-7CS"/>
+                            <constraint firstItem="gUH-R4-bAi" firstAttribute="leading" secondItem="gKr-Pp-6Gr" secondAttribute="leading" constant="30" id="l0J-oB-nJA"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Tech" id="8Ji-nH-l4I"/>

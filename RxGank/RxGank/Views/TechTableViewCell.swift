@@ -14,10 +14,10 @@ class TechTableViewCell: UITableViewCell {
     
     @IBOutlet weak var contentTimeLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        contentTitleLabel.preferredMaxLayoutWidth = UIScreen.mainScreen().bounds.size.width - 60
-    }
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//        
+//        contentTitleLabel.preferredMaxLayoutWidth = UIScreen.mainScreen().bounds.size.width - 60
+//    }
     
 }

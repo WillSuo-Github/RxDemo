@@ -32,6 +32,10 @@ class TechViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // 使用 AutoLayout 布局解决高度问题
+        tableView.estimatedRowHeight = 56.5
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
         /// 添加滑动切换手势
         view.addGestureRecognizer(configureSlideGesture())
         
@@ -102,26 +106,8 @@ class TechViewController: UIViewController {
                 }
             .addDisposableTo(disposeBag)
         
-        tableView.rx_setDelegate(self)
-        
     }
 
-}
-
-// MARK: - 设置 TableViewCell 高度
-
-extension TechViewController : UIScrollViewDelegate {
-    
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 100
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let cell = tableView.dequeueReusableCellWithIdentifier("\(TechTableViewCell.self)") as! TechTableViewCell
-        cell.contentTitleLabel.text = sections.value[indexPath.section].items[indexPath.row].value.desc
-        let titleHeight = cell.contentTitleLabel.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
-        return 5 + titleHeight + 5 + 14 + 5
-    }
 }
 
 // MARK: - TabBar 滑动切换 GestureRecognizerDelegate
