@@ -87,7 +87,7 @@ class TechViewController: UIViewController {
             .addDisposableTo(disposeBag)
         
         let tvDataSource = RxTableViewSectionedReloadDataSource<GirlSectionModel>()
-        tvDataSource.configureCell = { (tv, ip, i) in
+        tvDataSource.configureCell = { (_, tv, ip, i) in
             let cell = tv.dequeueReusableCellWithIdentifier("\(TechTableViewCell.self)", forIndexPath: ip) as! TechTableViewCell
             cell.contentTitleLabel.text = i.value.desc
             cell.contentTimeLabel.text = i.value.publishedAt.toDate(.ISO8601Format(.Extended))?.toString() ?? "unknown"

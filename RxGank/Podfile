@@ -3,9 +3,9 @@ use_frameworks!
 
 target 'RxGank' do
   pod 'Moya'
-  pod 'RxSwift'
-  pod 'RxCocoa'
-  pod 'RxDataSources'
+  pod 'RxSwift', '~>2.3'
+  pod 'RxCocoa', '~>2.3'
+  pod 'RxDataSources', '~>0.6.1'
   pod 'Moya/RxSwift'
   pod 'ObjectMapper'
   pod 'Kingfisher'

@@ -57,7 +57,7 @@ class GirlTableViewController: UITableViewController {
             }.addDisposableTo(disposeBag)
         
         let tvDataSource = RxTableViewSectionedReloadDataSource<GirlSectionModel>()
-        tvDataSource.configureCell = { (tv, ip, i) in
+        tvDataSource.configureCell = { (_, tv, ip, i) in
             let cell = tv.dequeueReusableCellWithIdentifier("\(GirlTableViewCell.self)") as! GirlTableViewCell
             cell.contentImageView.kf_setImageWithURL(NSURL(string: i.value.url)!)
             return cell

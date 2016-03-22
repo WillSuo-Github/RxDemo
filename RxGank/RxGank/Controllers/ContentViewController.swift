@@ -47,17 +47,17 @@ class ContentViewController: UITableViewController {
             .addDisposableTo(disposeBag)
         
         let tvDataSource = RxTableViewSectionedReloadDataSource<ContentSectionModel>()
-        tvDataSource.configureCell = { (tv, ip, i) in
+        tvDataSource.configureCell = { (_, tv, ip, i) in
             let cell = tv.dequeueReusableCellWithIdentifier("\(DetailTableViewCell.self)", forIndexPath: ip) as! DetailTableViewCell
             cell.descLabel.text = i.value.desc
             return cell
         }
         
-        tvDataSource.titleForHeaderInSection = { section in
-            return tvDataSource.sectionAtIndex(section).model
-        }
+        tvDataSource.titleForHeaderInSection = { $0.0.sectionAtIndex($0.1).model }
+        
         sections.asObservable()
-            .bindTo(tableView.rx_itemsWithDataSource(tvDataSource)).addDisposableTo(disposeBag)
+            .bindTo(tableView.rx_itemsWithDataSource(tvDataSource))
+            .addDisposableTo(disposeBag)
         
         tableView.rx_modelSelected(IdentitifiableValue<GankModel>).subscribeNext { [unowned self] model in
             let sfController = SFSafariViewController(URL: NSURL(string: model.value.url)!, entersReaderIfAvailable: true)
