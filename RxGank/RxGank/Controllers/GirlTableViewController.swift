@@ -67,7 +67,7 @@ class GirlTableViewController: UITableViewController {
             .bindTo(tableView.rx_itemsWithDataSource(tvDataSource))
             .addDisposableTo(disposeBag)
         
-        tableView.rx_modelSelected(IdentitifiableValue<GankModel>)
+        tableView.rx_modelSelected(IdentifiableValue<GankModel>)
             .subscribeNext { [unowned self] model in
                 let contentViewController = UIStoryboard(name: .Main).instantiateViewControllerWithClass(ContentViewController)
                 contentViewController.day = model.value.publishedAt.toDate(.ISO8601Format(.Extended))

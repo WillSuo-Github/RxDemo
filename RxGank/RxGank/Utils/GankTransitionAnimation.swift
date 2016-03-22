@@ -32,7 +32,7 @@ public class GankSlideTransitionAnimation: NSObject, TRViewControllerAnimatedTra
     
     public var gestureRecognizer: UIGestureRecognizer? {
         didSet {
-            gestureRecognizer?.addTarget(self, action: Selector("interactiveTransition:"))
+            gestureRecognizer?.addTarget(self, action: #selector(GankSlideTransitionAnimation.interactiveTransition(_:)))
         }
     }
     
@@ -116,7 +116,7 @@ public class GankSlideTransitionAnimation: NSObject, TRViewControllerAnimatedTra
             if percent > interactivePrecent {
                 percentTransition.completionSpeed = 1.0 - percentTransition.percentComplete
                 percentTransition.finishInteractiveTransition()
-                gestureRecognizer?.removeTarget(self, action: Selector("interactiveTransition:"))
+                gestureRecognizer?.removeTarget(self, action: #selector(GankSlideTransitionAnimation.interactiveTransition(_:)))
             } else {
                 percentTransition.cancelInteractiveTransition()
             }

@@ -66,7 +66,7 @@ class OptionViewController: UITableViewController {
         userIdTextField.text = optionData.id
         debugSwitch.on = optionData.debug
         gankTypeControl.selectedSegmentIndex = optionData.type.convertInt()
-        userIdTextField.addTarget(self, action: "updateUserId:", forControlEvents: .EditingChanged)
+        userIdTextField.addTarget(self, action: #selector(OptionViewController.updateUserId(_:)), forControlEvents: .EditingChanged)
     }
 
     func updateUserId(sender: UITextField) {

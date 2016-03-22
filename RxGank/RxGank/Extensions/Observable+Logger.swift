@@ -24,7 +24,7 @@ public extension ObservableType {
      - returns: An observable sequence whose events are printed to standard output.
      */
     @warn_unused_result(message="http://git.io/rxs.uo")
-    public func log(identifier: String? = nil, file: String = __FILE__, line: UInt = __LINE__, function: String = __FUNCTION__)
+    public func log(identifier: String? = nil, file: String = #file, line: UInt = #line, function: String = #function)
         -> Observable<E> {
             #if DEBUG
             return Observable.create { observer in
@@ -50,7 +50,7 @@ public extension ObservableType {
 
 public struct RxLogger<E> {
     
-    public static func output(event: RxSwift.Event<E>, identifier: String?, file: String = __FILE__, line: UInt = __LINE__, function: String = __FUNCTION__) {
+    public static func output(event: RxSwift.Event<E>, identifier: String?, file: String = #file, line: UInt = #line, function: String = #function) {
         
         let dateFormat =  NSDateFormatter()
         dateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
