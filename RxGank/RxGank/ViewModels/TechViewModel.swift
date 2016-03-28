@@ -74,7 +74,6 @@ class TechViewModel {
             .merge()
             .withLatestFrom(page.asObservable())
         
-        
         let loadMoreData = loadMoreRequest.map { [unowned self] in (category: self.category.value, page: $0) }
             .flatMapLatest { GankProvider.request(.Category($0.category, Config.Tech.pages, $0.page)) }
             .mapArray(GankModel)
@@ -109,7 +108,8 @@ class TechViewModel {
             .toObservable()
             .merge()
             .scan(elements.value) { $1.1 ? $1.0 : $0 + $1.0 }
-            .bindTo(elements).addDisposableTo(disposeBag)
+            .bindTo(elements)
+            .addDisposableTo(disposeBag)
         
     }
     

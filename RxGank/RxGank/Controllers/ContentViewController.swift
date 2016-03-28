@@ -10,22 +10,19 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import Kingfisher
-import SnapKit
 import SafariServices
 import SwiftDate
 import MobileCoreServices
 
-typealias ContentSectionModel = AnimatableSectionModel<String, GankModel>
-
 class ContentViewController: UITableViewController {
     
     @IBOutlet weak var headImageView: UIImageView!
+    
+    @IBOutlet weak var imageActivityIndicatorView: UIActivityIndicatorView!
 
-    var day: NSDate?
+    var day = Variable(NSDate())
     
-    let disposeBag = DisposeBag()
-    
-    let sections = Variable([ContentSectionModel]())
+    var viewModel: ContentViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,41 +34,41 @@ class ContentViewController: UITableViewController {
         tableView.estimatedRowHeight = 45
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        GankProvider.request(.Day(day ?? NSDate.today()))
-            .mapObject(DayModel)
-            .subscribeNext { [unowned self] model in
-                self.sections.value = model.results.map { ContentSectionModel(model: $0.0, items: $0.1) }
-                if let imageStr = model.results["福利"]?.first?.url {
-                    self.headImageView.kf_setImageWithURL(NSURL(string: imageStr)!, placeholderImage: nil, optionsInfo: nil){ _ in
-                        self.navigationItem.rightBarButtonItem?.enabled = true
-                    }
-                }
-            }
-            .addDisposableTo(disposeBag)
-        
         let tvDataSource = RxTableViewSectionedReloadDataSource<ContentSectionModel>()
         tvDataSource.configureCell = { (_, tv, ip, i) in
             let cell = tv.dequeueReusableCellWithIdentifier("\(DetailTableViewCell.self)", forIndexPath: ip) as! DetailTableViewCell
             cell.descLabel.text = i.value.desc
             return cell
         }
-        
         tvDataSource.titleForHeaderInSection = { $0.0.sectionAtIndex($0.1).model }
         
-        sections.asObservable()
+        viewModel = ContentViewModel(input: (day: day.asObservable(), d: 1))
+        
+        viewModel.elements.asObservable()
             .bindTo(tableView.rx_itemsWithDataSource(tvDataSource))
-            .addDisposableTo(disposeBag)
+            .addDisposableTo(rx_disposeBag)
+        
+        viewModel.image.asDriver().drive(headImageView.rx_image)
+            .addDisposableTo(rx_disposeBag)
+
+        viewModel.imageLoading.asDriver().drive(imageActivityIndicatorView.rx_animating)
+            .addDisposableTo(rx_disposeBag)
+        
+        viewModel.imageLoading.asDriver()
+            .map { !$0 }
+            .drive(navigationItem.rightBarButtonItem!.rx_enabled)
+            .addDisposableTo(rx_disposeBag)
         
         tableView.rx_modelSelected(IdentifiableValue<GankModel>).subscribeNext { [unowned self] model in
             let sfController = SFSafariViewController(URL: NSURL(string: model.value.url)!, entersReaderIfAvailable: true)
             sfController.view.tintColor = Config.Color.blackColor
             self.presentViewController(sfController, animated: true, completion: nil)
-            
-            }.addDisposableTo(disposeBag)
+            }
+            .addDisposableTo(rx_disposeBag)
 
         navigationItem.rightBarButtonItem?.rx_tap
             .subscribeNext { [unowned self] in
-                let shareURL = NSURL(string: "http://gank.io/\(self.day!.toString(.Custom("yyyy/MM/dd"))!)")!
+                let shareURL = NSURL(string: "http://gank.io/\(self.day.value.toString(.Custom("yyyy/MM/dd"))!)")!
                 let itemProvider = NSItemProvider()
                 itemProvider.registerItemForTypeIdentifier(kUTTypeURL as String) {
                     completionHandler, expectedClass, options in
@@ -84,7 +81,8 @@ class ContentViewController: UITableViewController {
                 let vc = UIActivityViewController(activityItems: [self.headImageView.image!, shareURL],
                     applicationActivities: [GKSafariActivity()])
                 self.presentViewController(vc, animated: true, completion: nil)
-        }.addDisposableTo(disposeBag)
+            }
+            .addDisposableTo(rx_disposeBag)
         
     }
 

@@ -11,15 +11,15 @@ import RxCocoa
 
 class GirlViewModel {
     
+    let loadTriger = PublishSubject<Void>()
+    let refreshTriger = PublishSubject<Void>()
+    let loadMoreTriger = PublishSubject<Void>()
+    
     let elements = Variable([GankModel]())
     let page = Variable(1)
     
     let refreshing = Variable<Bool>(false)
     let loading = Variable<Bool>(false)
-    
-    let loadTriger = PublishSubject<Void>()
-    let refreshTriger = PublishSubject<Void>()
-    let loadMoreTriger = PublishSubject<Void>()
     
     private let disposeBag = DisposeBag()
     
@@ -50,7 +50,6 @@ class GirlViewModel {
         let loadMoreRequest = [loadMoreTriger, loadTriger].toObservable()
             .merge()
             .withLatestFrom(page.asObservable())
-        
         
         let loadMoreData = loadMoreRequest
             .flatMapLatest { GankProvider.request(.Category(.福利, Config.Girl.pages, $0)) }

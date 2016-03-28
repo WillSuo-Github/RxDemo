@@ -24,12 +24,14 @@ class GirlTableViewController: UITableViewController {
         
         let loadActivityIndicatorView = tableView.tableFooterView as! ActivityIndicatorView
         
+        // 输入
         viewModel = GirlViewModel(
             input: (
                 refreshTriger: tableView.rx_pullRefresh.asObservable(),
                 loadMoreTriger: tableView.rx_reachedBottom.asObservable())
         )
         
+        // 输出
         viewModel.refreshing.asObservable()
             .bindTo(tableView.rx_pullRefreshAnimating)
             .addDisposableTo(rx_disposeBag)
@@ -51,7 +53,7 @@ class GirlTableViewController: UITableViewController {
         tableView.rx_modelSelected(GankModel)
             .subscribeNext { [unowned self] model in
                 let contentViewController = UIStoryboard(name: .Main).instantiateViewControllerWithClass(ContentViewController)
-                contentViewController.day = model.publishedAt.toDate(.ISO8601Format(.Extended))
+                contentViewController.day.value = model.publishedAt.toDate(.ISO8601Format(.Extended))!
                 self.navigationController?.pushViewController(contentViewController, animated: true)
             }
             .addDisposableTo(rx_disposeBag)
@@ -64,6 +66,3 @@ class GirlTableViewController: UITableViewController {
     }
 
 }
-
-
-

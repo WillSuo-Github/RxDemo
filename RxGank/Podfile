@@ -2,20 +2,19 @@ platform :ios, 9.0
 use_frameworks!
 
 target 'RxGank' do
-  pod 'Moya'
-  pod 'RxSwift' #,:git => 'https://github.com/ReactiveX/RxSwift.git', :branch => 'develop'
-  pod 'RxCocoa',:git => 'https://github.com/ReactiveX/RxSwift.git', :branch => 'develop'
-  pod 'RxDataSources',:git => 'https://github.com/RxSwiftCommunity/RxDataSources.git'
-  pod 'Moya/RxSwift'
-  pod 'ObjectMapper'
-  pod 'Kingfisher'
-  pod 'SwiftDate'
-  pod 'XCGLogger'
-  pod 'TransitionTreasury'
-  pod 'TransitionTreasury/Animations'
-  pod 'SnapKit'
-  pod 'SwiftyUserDefaults'
-  pod 'NSObject+Rx'
+  pod 'Moya', '~>6.3'
+  pod 'RxSwift', '~>2.3'
+  pod 'RxCocoa', '~>2.3'
+  pod 'RxDataSources', '~>0.6'
+  pod 'Moya/RxSwift', '~>6.3'
+  pod 'ObjectMapper', '~>1.2'
+  pod 'Kingfisher', '~>2.2'
+  pod 'SwiftDate', '~>3.0'
+  pod 'XCGLogger', '~>3.3'
+  pod 'TransitionTreasury', '~>3.0'
+  pod 'SwiftyUserDefaults', '~>2.1'˘
+  pod 'NSObject+Rx', '~>1.2'
+  pod 'RxOptional', '~>2.0'
 end
 
 target 'ShareToGank' do

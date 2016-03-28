@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2604DD271C8FC3E300486263 /* TechTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2604DD261C8FC3E300486263 /* TechTableViewCell.swift */; };
+		2608A1201CA931AF009B2070 /* GankScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A11F1CA931AF009B2070 /* GankScheduler.swift */; };
 		262C85CB1C98447E0076373F /* GKSafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262C85CA1C98447E0076373F /* GKSafariActivity.swift */; };
 		26344B8D1C8FABD8008ED4F5 /* GankTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26344B8C1C8FABD8008ED4F5 /* GankTransitionAnimation.swift */; };
 		26344B8F1C8FB7A2008ED4F5 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26344B8E1C8FB7A2008ED4F5 /* Configuration.swift */; };
@@ -37,8 +38,10 @@
 		269F790F1CA8CEAF00FA62BE /* TechViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269F790E1CA8CEAF00FA62BE /* TechViewModel.swift */; };
 		26C7ADF21CA8F5BC002EA00F /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C7ADF11CA8F5BC002EA00F /* UITableViewExtension.swift */; };
 		26C7ADF41CA8FB32002EA00F /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C7ADF31CA8FB32002EA00F /* UIViewControllerExtension.swift */; };
+		26C7ADF61CA902D9002EA00F /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C7ADF51CA902D9002EA00F /* ContentViewModel.swift */; };
 		26DAD2801CA8B8B70054B1E9 /* GirlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DAD27F1CA8B8B70054B1E9 /* GirlViewModel.swift */; };
 		26DAD2821CA8C0050054B1E9 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DAD2811CA8C0050054B1E9 /* ActivityIndicatorView.swift */; };
+		26F0AC491CA92BE6003D8BA5 /* KingfisherExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F0AC481CA92BE6003D8BA5 /* KingfisherExtension.swift */; };
 		2D62C107405661CFEAFA2BD1 /* Pods_RxGank.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5104E7F4EA11218982F4CFC2 /* Pods_RxGank.framework */; };
 		8874A092B9A80C556EC0C061 /* Pods_ShareToGank.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C5D58C3E0BD08151A2E1FB5 /* Pods_ShareToGank.framework */; };
 /* End PBXBuildFile section */
@@ -70,6 +73,7 @@
 /* Begin PBXFileReference section */
 		01CE9328C3BC0813AA5C6364 /* Pods-ShareToGank.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareToGank.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShareToGank/Pods-ShareToGank.debug.xcconfig"; sourceTree = "<group>"; };
 		2604DD261C8FC3E300486263 /* TechTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TechTableViewCell.swift; sourceTree = "<group>"; };
+		2608A11F1CA931AF009B2070 /* GankScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GankScheduler.swift; sourceTree = "<group>"; };
 		262C85CA1C98447E0076373F /* GKSafariActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKSafariActivity.swift; sourceTree = "<group>"; };
 		26344B8C1C8FABD8008ED4F5 /* GankTransitionAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GankTransitionAnimation.swift; sourceTree = "<group>"; };
 		26344B8E1C8FB7A2008ED4F5 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
@@ -102,8 +106,10 @@
 		269F790E1CA8CEAF00FA62BE /* TechViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TechViewModel.swift; sourceTree = "<group>"; };
 		26C7ADF11CA8F5BC002EA00F /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		26C7ADF31CA8FB32002EA00F /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		26C7ADF51CA902D9002EA00F /* ContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		26DAD27F1CA8B8B70054B1E9 /* GirlViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GirlViewModel.swift; sourceTree = "<group>"; };
 		26DAD2811CA8C0050054B1E9 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
+		26F0AC481CA92BE6003D8BA5 /* KingfisherExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KingfisherExtension.swift; sourceTree = "<group>"; };
 		4C5D58C3E0BD08151A2E1FB5 /* Pods_ShareToGank.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShareToGank.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E99E28E60F5D1FD9187BACB /* Pods-RxGank.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxGank.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxGank/Pods-RxGank.debug.xcconfig"; sourceTree = "<group>"; };
 		5104E7F4EA11218982F4CFC2 /* Pods_RxGank.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxGank.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,6 +216,7 @@
 				2684902E1C829D5300378065 /* Observable+Logger.swift */,
 				26C7ADF11CA8F5BC002EA00F /* UITableViewExtension.swift */,
 				26C7ADF31CA8FB32002EA00F /* UIViewControllerExtension.swift */,
+				26F0AC481CA92BE6003D8BA5 /* KingfisherExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -226,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				268490241C829C4300378065 /* GankProvider.swift */,
+				2608A11F1CA931AF009B2070 /* GankScheduler.swift */,
 				268490261C829C4300378065 /* SwiftyUserDefaults.swift */,
 				268490271C829C4300378065 /* Logger.swift */,
 				268490281C829C4300378065 /* NetworkLogger.swift */,
@@ -251,6 +259,7 @@
 			children = (
 				26DAD27F1CA8B8B70054B1E9 /* GirlViewModel.swift */,
 				269F790E1CA8CEAF00FA62BE /* TechViewModel.swift */,
+				26C7ADF51CA902D9002EA00F /* ContentViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -483,6 +492,7 @@
 			files = (
 				2604DD271C8FC3E300486263 /* TechTableViewCell.swift in Sources */,
 				268490391C82A03E00378065 /* Observable+ObjectMapper.swift in Sources */,
+				2608A1201CA931AF009B2070 /* GankScheduler.swift in Sources */,
 				26C7ADF41CA8FB32002EA00F /* UIViewControllerExtension.swift in Sources */,
 				268490371C82A03E00378065 /* UIStoryBoardExtension.swift in Sources */,
 				26C7ADF21CA8F5BC002EA00F /* UITableViewExtension.swift in Sources */,
@@ -495,9 +505,11 @@
 				2684902C1C829C4300378065 /* Logger.swift in Sources */,
 				267261AE1C82BDBD00078037 /* ContentViewController.swift in Sources */,
 				262C85CB1C98447E0076373F /* GKSafariActivity.swift in Sources */,
+				26C7ADF61CA902D9002EA00F /* ContentViewModel.swift in Sources */,
 				26DAD2801CA8B8B70054B1E9 /* GirlViewModel.swift in Sources */,
 				2684902F1C829D5300378065 /* Observable+Logger.swift in Sources */,
 				268490311C829F7100378065 /* GankModel.swift in Sources */,
+				26F0AC491CA92BE6003D8BA5 /* KingfisherExtension.swift in Sources */,
 				268490381C82A03E00378065 /* Response+ObjectMapper.swift in Sources */,
 				26344B8F1C8FB7A2008ED4F5 /* Configuration.swift in Sources */,
 				268490291C829C4300378065 /* GankProvider.swift in Sources */,

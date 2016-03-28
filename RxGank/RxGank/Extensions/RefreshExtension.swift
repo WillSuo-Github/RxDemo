@@ -34,7 +34,7 @@ extension UIScrollView {
         }
         
         return rx_contentOffset
-            .filter { [unowned self] _ in !self.dragging }
+            .filter { [unowned self] _ in !self.dragging } 
             .map { $0.y < -_pullToRefreshDefaultHeight }
             .distinctUntilChanged()
             .filter { $0 }
@@ -112,7 +112,6 @@ extension UIScrollView {
     }
     
 }
-
 
 extension UIScrollView {
     
