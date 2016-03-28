@@ -2,7 +2,7 @@
 //  UIStoryBoardExtension.swift
 //  RxGanHuo
 //
-//  Created by 宋宋 on 16/2/24.
+//  Created by DianQK on 16/2/24.
 //  Copyright © 2016年 DianQK. All rights reserved.
 //
 

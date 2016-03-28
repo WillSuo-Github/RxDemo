@@ -2,20 +2,17 @@
 //  TechViewController.swift
 //  RxGank
 //
-//  Created by 宋宋 on 16/3/6.
+//  Created by DianQK on 16/3/6.
 //  Copyright © 2016年 DianQK. All rights reserved.
 //
 
-import UIKit
 import RxSwift
 import RxCocoa
-import RxDataSources
 import Kingfisher
 import Moya
 import SwiftDate
 import SafariServices
-
-typealias TechSectionModel = AnimatableSectionModel<String, GankModel>
+import NSObject_Rx
 
 class TechViewController: UIViewController {
     
@@ -23,116 +20,65 @@ class TechViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    let sections = Variable([TechSectionModel]())
-    
-    let disposeBag = DisposeBag()
-    
-    var currentPage: Int = 1
+    var viewModel: TechViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 使用 AutoLayout 布局解决高度问题
         tableView.estimatedRowHeight = 56.5
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        /// 添加滑动切换手势
-        view.addGestureRecognizer(configureSlideGesture())
+        let loadActivityIndicatorView = tableView.tableFooterView as! ActivityIndicatorView
         
         func configureCategory(rawCategory: Int) -> GankCategory {
             switch rawCategory {
-            case 0: return GankCategory.iOS
-            case 1: return GankCategory.Android
-            case 2: return GankCategory.前端
+            case 0: return .iOS
+            case 1: return .Android
+            case 2: return .前端
             default: fatalError()
             }
         }
         
-        /// 切换分类
-        segmentedControl.rx_value
-            .map { configureCategory($0) }
-            .flatMapLatest { GankProvider.request(.Category($0, 15, 1)) }
-            .retry(2)
-            .mapArray(GankModel)
-            .subscribeNext { [unowned self] in
-                self.sections.value = [TechSectionModel(model: "", items: $0)]
-            }
-            .addDisposableTo(disposeBag)
+        viewModel = TechViewModel(
+            input: (
+                refreshTriger: tableView.rx_pullRefresh.asObservable(),
+                loadMoreTriger: tableView.rx_reachedBottom.asObservable(),
+                categoryChangeTriger: segmentedControl.rx_value.map { configureCategory($0) }.asObservable())
+        )
         
-        /// 下拉刷新
-        tableView.rx_pullRefresh
-            .map { [unowned self] in
-                self.currentPage = 1
-                return configureCategory(self.segmentedControl.selectedSegmentIndex)
-            }
-            .flatMapLatest { GankProvider.request(.Category($0, 15, 1)) }
-            .retry(2).mapArray(GankModel)
-            .bindNext { [unowned self] in
-                self.tableView.stopPullRefresh()
-                self.sections.value = [TechSectionModel(model: "", items: $0)]
-            }
-            .addDisposableTo(disposeBag)
+        viewModel.refreshing.asObservable()
+            .bindTo(tableView.rx_pullRefreshAnimating)
+            .addDisposableTo(rx_disposeBag)
         
-        /// 下拉加载更多
-        tableView.rx_loadRefresh
-            .map { [unowned self] () -> (category: GankCategory, page: Int)in
-                self.currentPage += 1
-                return (category: configureCategory(self.segmentedControl.selectedSegmentIndex)
-                    , page: self.currentPage)
+        viewModel.loading.asObservable()
+            .bindTo(loadActivityIndicatorView.rx_animating)
+            .addDisposableTo(rx_disposeBag)
+        
+        viewModel.elements.asObservable()
+            .bindTo(tableView.rx_itemsWithCellIdentifier("\(TechTableViewCell.self)", cellType: TechTableViewCell.self)) { _, v, cell in
+                cell.contentTitleLabel.text = v.desc
+                cell.contentTimeLabel.text = v.publishedAt.toDate(.ISO8601Format(.Extended))?.toString() ?? "unknown"
             }
-            .flatMapLatest { GankProvider.request(.Category($0.category, 15, $0.page)) }.retry(2).mapArray(GankModel).bindNext { [unowned self] in
-                self.tableView.stopLoadRefresh()
-                self.sections.value.append(TechSectionModel(model: "", items: $0))
-            }
-            .addDisposableTo(disposeBag)
+            .addDisposableTo(rx_disposeBag)
         
-        let tvDataSource = RxTableViewSectionedReloadDataSource<GirlSectionModel>()
-        tvDataSource.configureCell = { (_, tv, ip, i) in
-            let cell = tv.dequeueReusableCellWithIdentifier("\(TechTableViewCell.self)", forIndexPath: ip) as! TechTableViewCell
-            cell.contentTitleLabel.text = i.value.desc
-            cell.contentTimeLabel.text = i.value.publishedAt.toDate(.ISO8601Format(.Extended))?.toString() ?? "unknown"
-            return cell
-        }
+        viewModel.elements.asObservable().map { !$0.isEmpty }
+            .bindTo(tableView.rx_scrollEnabled)
+            .addDisposableTo(rx_disposeBag)
         
-        sections.asObservable()
-            .bindTo(tableView.rx_itemsWithDataSource(tvDataSource))
-            .addDisposableTo(disposeBag)
-        
-        tableView.rx_modelSelected(IdentifiableValue<GankModel>)
+        tableView.rx_modelSelected(GankModel)
             .subscribeNext { [unowned self] model in
-                let sfController = SFSafariViewController(URL: NSURL(string: model.value.url)!, entersReaderIfAvailable: true)
+                let sfController = SFSafariViewController(URL: NSURL(string: model.url)!, entersReaderIfAvailable: true)
                 sfController.view.tintColor = Config.Color.blackColor
                 self.presentViewController(sfController, animated: true, completion: nil)
                 }
-            .addDisposableTo(disposeBag)
+            .addDisposableTo(rx_disposeBag)
+        
+        Observable.just(())
+            .bindTo(viewModel.loadTriger)
+            .addDisposableTo(rx_disposeBag)
+        
+        view.addGestureRecognizer(configureEdgePanGesture(.Left, selected: 0))
         
     }
 
-}
-
-// MARK: - TabBar 滑动切换 GestureRecognizerDelegate
-
-extension TechViewController: UIGestureRecognizerDelegate {
-    
-    func configureSlideGesture() -> UIPanGestureRecognizer {
-        let gesture = UIPanGestureRecognizer()
-        
-        gesture.delegate = self
-        gesture.maximumNumberOfTouches = 1
-        gesture.rx_event
-            .filter { $0.state == .Began }
-            .subscribeNext { [unowned self] in
-                self.tabBarController?.tr_selected(0, gesture: $0)
-            }
-            .addDisposableTo(disposeBag)
-        return gesture
-    }
-    
-    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
-        if let gestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer {
-            return gestureRecognizer.translationInView(gestureRecognizer.view).x != 0
-        }
-        return false
-    }
-    
 }

@@ -10,7 +10,7 @@
         <scene sceneID="U81-oi-Zbe">
             <objects>
                 <tableViewController storyboardIdentifier="GirlTableViewController" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="XR7-NW-rwk" customClass="GirlTableViewController" customModule="RxGank" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="400" sectionHeaderHeight="28" sectionFooterHeight="28" id="DVg-LK-rZg">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="400" sectionHeaderHeight="28" sectionFooterHeight="28" id="DVg-LK-rZg">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -131,6 +131,24 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tsT-22-WnU">
                                 <rect key="frame" x="0.0" y="58" width="320" height="446"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="ade-wL-pu0" customClass="ActivityIndicatorView" customModule="RxGank" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="78" width="320" height="60"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <activityIndicatorView contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="OZV-6v-D2j">
+                                            <rect key="frame" x="150" y="20" width="20" height="20"/>
+                                            <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="OZV-6v-D2j" firstAttribute="centerY" secondItem="ade-wL-pu0" secondAttribute="centerY" id="7Mg-yy-XSB"/>
+                                        <constraint firstItem="OZV-6v-D2j" firstAttribute="centerX" secondItem="ade-wL-pu0" secondAttribute="centerX" id="k1l-H3-a30"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="activityIndicator" destination="OZV-6v-D2j" id="uNU-aP-jVk"/>
+                                    </connections>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TechTableViewCell" id="PCB-Ti-h5f" customClass="TechTableViewCell" customModule="RxGank" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="50"/>

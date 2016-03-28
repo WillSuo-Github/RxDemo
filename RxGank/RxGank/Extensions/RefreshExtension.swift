@@ -2,7 +2,7 @@
 //  RefreshExtension.swift
 //  RxExample
 //
-//  Created by 宋宋 on 16/2/12.
+//  Created by DianQK on 16/2/12.
 //  Copyright © 2016年 DianQK. All rights reserved.
 //
 
@@ -13,8 +13,8 @@ import RxCocoa
 private let _pulltoRefreshTag = 16754
 private let _loadtoRefreshTag = 16755
 
-private let _pullToRefreshDefaultHeight: CGFloat = 50
-private let _loadToRefreshDefaultHeight: CGFloat = 50
+private let _pullToRefreshDefaultHeight: CGFloat = 60
+private let _loadToRefreshDefaultHeight: CGFloat = 60
 
 extension UIScrollView {
     
@@ -28,11 +28,14 @@ extension UIScrollView {
             activityIndicatorView.color = UIColor.blackColor()
             activityIndicatorView.hidesWhenStopped = false
             addSubview(activityIndicatorView)
+            activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+            activityIndicatorView.centerXAnchor.constraintEqualToAnchor(centerXAnchor).active = true
+            activityIndicatorView.bottomAnchor.constraintEqualToAnchor(topAnchor, constant: -10).active = true
         }
         
         return rx_contentOffset
             .filter { [unowned self] _ in !self.dragging }
-            .map { $0.y < -50 }
+            .map { $0.y < -_pullToRefreshDefaultHeight }
             .distinctUntilChanged()
             .filter { $0 }
             .map { [unowned self] _ in
@@ -108,4 +111,14 @@ extension UIScrollView {
         }.throttle(0.3, scheduler: MainScheduler.instance)
     }
     
+}
+
+
+extension UIScrollView {
+    
+    public var rx_scrollEnabled: AnyObserver<Bool> {
+        return UIBindingObserver(UIElement: self) { scrollView, enabled in
+            scrollView.scrollEnabled = enabled
+            }.asObserver()
+    }
 }

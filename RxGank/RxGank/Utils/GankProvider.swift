@@ -2,7 +2,7 @@
 // GankProvider.swift
 //  RxGank
 //
-//  Created by 宋宋 on 16/2/23.
+//  Created by DianQK on 16/2/23.
 //  Copyright © 2016年 tripleCC. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  ActivityIndicatorView.swift
 //  RxGank
 //
-//  Created by 宋宋 on 16/3/28.
+//  Created by DianQK on 16/3/28.
 //  Copyright © 2016年 DianQK. All rights reserved.
 //
 

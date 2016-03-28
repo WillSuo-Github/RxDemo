@@ -1,5 +1,5 @@
 //
-//  GirlViewModel.swift
+//  TechViewModel.swift
 //  RxGank
 //
 //  Created by DianQK on 16/3/28.
@@ -9,13 +9,14 @@
 import RxSwift
 import RxCocoa
 
-class GirlViewModel {
+class TechViewModel {
     
     let elements = Variable([GankModel]())
     let page = Variable(1)
     
     let refreshing = Variable<Bool>(false)
     let loading = Variable<Bool>(false)
+    let category = Variable<GankCategory>(.iOS)
     
     let loadTriger = PublishSubject<Void>()
     let refreshTriger = PublishSubject<Void>()
@@ -26,7 +27,8 @@ class GirlViewModel {
     init(
         input: (
         refreshTriger: Observable<Void>,
-        loadMoreTriger: Observable<Void>
+        loadMoreTriger: Observable<Void>,
+        categoryChangeTriger: Observable<GankCategory>
         )
         ) {
         
@@ -38,12 +40,33 @@ class GirlViewModel {
             .bindTo(loadMoreTriger)
             .addDisposableTo(disposeBag)
         
+        input.categoryChangeTriger
+            .bindTo(category)
+            .addDisposableTo(disposeBag)
+        
+        let categoryChange = category.asObservable().shareReplay(1)
+        
+        categoryChange.map { _ in [] }
+            .bindTo(elements)
+            .addDisposableTo(disposeBag)
+        
+        categoryChange.map { _ in 1 }
+            .bindTo(page)
+            .addDisposableTo(disposeBag)
+        
+        let categoryRequest = categoryChange.map { (category: $0, page: 1) }
+            .shareReplay(1)
+        
+        let categoryData = categoryRequest.flatMapLatest { GankProvider.request(.Category($0.category, Config.Tech.pages, $0.page)) }
+            .mapArray(GankModel)
+            .shareReplay(1)
+        
         let refreshRequest = refreshTriger
             .map {1}
             .shareReplay(1)
         
-        let refreshData = refreshRequest
-            .flatMapLatest { GankProvider.request(.Category(.福利, Config.Girl.pages, $0)) }
+        let refreshData = refreshRequest.map { [unowned self] in (category: self.category.value, page: $0) }
+            .flatMapLatest { GankProvider.request(.Category($0.category, Config.Tech.pages, $0.page)) }
             .mapArray(GankModel)
             .shareReplay(1)
         
@@ -52,10 +75,16 @@ class GirlViewModel {
             .withLatestFrom(page.asObservable())
         
         
-        let loadMoreData = loadMoreRequest
-            .flatMapLatest { GankProvider.request(.Category(.福利, Config.Girl.pages, $0)) }
+        let loadMoreData = loadMoreRequest.map { [unowned self] in (category: self.category.value, page: $0) }
+            .flatMapLatest { GankProvider.request(.Category($0.category, Config.Tech.pages, $0.page)) }
             .mapArray(GankModel)
             .shareReplay(1)
+        
+        [categoryRequest.map { _ in true }, categoryData.map { _ in false }]
+            .toObservable()
+            .merge()
+            .bindTo(loading)
+            .addDisposableTo(disposeBag)
         
         [refreshRequest.map { _ in true }, refreshData.map { _ in false }]
             .toObservable()
@@ -76,7 +105,7 @@ class GirlViewModel {
             .bindTo(loading)
             .addDisposableTo(disposeBag)
         
-        [refreshData.map { ($0, true) }, loadMoreData.map { ($0, false) }]
+        [refreshData.map { ($0, true) }, loadMoreData.map { ($0, false) }, categoryData.map { ($0, true) }]
             .toObservable()
             .merge()
             .scan(elements.value) { $1.1 ? $1.0 : $0 + $1.0 }

@@ -2,7 +2,7 @@
 //  ContentViewController.swift
 //  RxGank
 //
-//  Created by 宋宋 on 16/2/28.
+//  Created by DianQK on 16/2/28.
 //  Copyright © 2016年 DianQK. All rights reserved.
 //
 
@@ -68,8 +68,6 @@ class ContentViewController: UITableViewController {
             self.presentViewController(sfController, animated: true, completion: nil)
             
             }.addDisposableTo(disposeBag)
-        
-        tableView.rx_setDelegate(self)
 
         navigationItem.rightBarButtonItem?.rx_tap
             .subscribeNext { [unowned self] in
