@@ -180,18 +180,18 @@
 		2684900F1C829B5300378065 /* RxGank */ = {
 			isa = PBXGroup;
 			children = (
+				268490161C829B5300378065 /* Controllers */,
 				26DAD27E1CA8B8B70054B1E9 /* ViewModels */,
+				268490191C829B5300378065 /* Models */,
+				2684901A1C829B5300378065 /* Utils */,
+				268490171C829B5300378065 /* Extensions */,
+				2684901D1C829B5300378065 /* Views */,
+				26344B8E1C8FB7A2008ED4F5 /* Configuration.swift */,
 				264DD93F1C9112FD00D544FB /* Info.plist */,
 				268490101C829B5300378065 /* AppDelegate.swift */,
 				268490111C829B5300378065 /* Assets.xcassets */,
 				268490121C829B5300378065 /* LaunchScreen.storyboard */,
 				268490141C829B5300378065 /* Main.storyboard */,
-				268490161C829B5300378065 /* Controllers */,
-				268490171C829B5300378065 /* Extensions */,
-				268490191C829B5300378065 /* Models */,
-				2684901A1C829B5300378065 /* Utils */,
-				2684901D1C829B5300378065 /* Views */,
-				26344B8E1C8FB7A2008ED4F5 /* Configuration.swift */,
 			);
 			path = RxGank;
 			sourceTree = "<group>";

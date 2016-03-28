@@ -9,7 +9,6 @@
 import RxSwift
 import RxCocoa
 import RxDataSources
-import Kingfisher
 import SafariServices
 import SwiftDate
 import MobileCoreServices
