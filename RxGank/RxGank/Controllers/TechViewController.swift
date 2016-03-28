@@ -101,7 +101,7 @@ class TechViewController: UIViewController {
         tableView.rx_modelSelected(IdentifiableValue<GankModel>)
             .subscribeNext { [unowned self] model in
                 let sfController = SFSafariViewController(URL: NSURL(string: model.value.url)!, entersReaderIfAvailable: true)
-                sfController.view.tintColor = Configuration.Color.blackColor
+                sfController.view.tintColor = Config.Color.blackColor
                 self.presentViewController(sfController, animated: true, completion: nil)
                 }
             .addDisposableTo(disposeBag)

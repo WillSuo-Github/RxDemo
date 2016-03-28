@@ -34,6 +34,9 @@ class ContentViewController: UITableViewController {
         tableView.delegate = nil
         tableView.sectionFooterHeight = 0
         
+        tableView.estimatedRowHeight = 45
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
         GankProvider.request(.Day(day ?? NSDate.today()))
             .mapObject(DayModel)
             .subscribeNext { [unowned self] model in
@@ -61,7 +64,7 @@ class ContentViewController: UITableViewController {
         
         tableView.rx_modelSelected(IdentifiableValue<GankModel>).subscribeNext { [unowned self] model in
             let sfController = SFSafariViewController(URL: NSURL(string: model.value.url)!, entersReaderIfAvailable: true)
-            sfController.view.tintColor = Configuration.Color.blackColor
+            sfController.view.tintColor = Config.Color.blackColor
             self.presentViewController(sfController, animated: true, completion: nil)
             
             }.addDisposableTo(disposeBag)
@@ -87,18 +90,4 @@ class ContentViewController: UITableViewController {
         
     }
 
-}
-
-extension ContentViewController {
-    
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 45
-    }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let cell = tableView.dequeueReusableCellWithIdentifier("\(DetailTableViewCell.self)") as! DetailTableViewCell
-        cell.descLabel.text = sections.value[indexPath.section].items[indexPath.row].value.desc
-        let titleHeight = cell.descLabel.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
-        return 5 + titleHeight + 5
-    }
 }
