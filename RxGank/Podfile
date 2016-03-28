@@ -12,7 +12,7 @@ target 'RxGank' do
   pod 'SwiftDate', '~>3.0'
   pod 'XCGLogger', '~>3.3'
   pod 'TransitionTreasury', '~>3.0'
-  pod 'SwiftyUserDefaults', '~>2.1'˘
+  pod 'SwiftyUserDefaults', '~>2.1'
   pod 'NSObject+Rx', '~>1.2'
   pod 'RxOptional', '~>2.0'
 end
