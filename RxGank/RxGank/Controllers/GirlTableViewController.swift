@@ -24,14 +24,12 @@ class GirlTableViewController: UITableViewController {
         
         let loadActivityIndicatorView = tableView.tableFooterView as! ActivityIndicatorView
         
-        // 输入
         viewModel = GirlViewModel(
             input: (
                 refreshTriger: tableView.rx_pullRefresh.asObservable(),
                 loadMoreTriger: tableView.rx_reachedBottom.asObservable())
         )
         
-        // 输出
         viewModel.refreshing.asObservable()
             .bindTo(tableView.rx_pullRefreshAnimating)
             .addDisposableTo(rx_disposeBag)

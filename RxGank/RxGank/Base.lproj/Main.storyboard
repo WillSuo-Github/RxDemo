@@ -301,7 +301,7 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" id="pA7-Fl-nRV">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="SuM-hg-tgq">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="action" id="SuM-hg-tgq">
                             <color key="tintColor" red="0.1764705882" green="0.1764705882" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>

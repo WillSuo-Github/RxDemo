@@ -67,7 +67,9 @@ class ContentViewController: UITableViewController {
             .addDisposableTo(rx_disposeBag)
 
         navigationItem.rightBarButtonItem?.rx_tap
-            .subscribeNext { [unowned self] in
+            .withLatestFrom(viewModel.image.asDriver())
+            .filterNil()
+            .subscribeNext { [unowned self] image in
                 let shareURL = NSURL(string: "http://gank.io/\(self.day.value.toString(.Custom("yyyy/MM/dd"))!)")!
                 let itemProvider = NSItemProvider()
                 itemProvider.registerItemForTypeIdentifier(kUTTypeURL as String) {
@@ -75,7 +77,7 @@ class ContentViewController: UITableViewController {
                     completionHandler(shareURL, nil)
                 }
                 itemProvider.previewImageHandler = { completionHandler, expectedClass, options in
-                    completionHandler(self.headImageView.image, nil)
+                    completionHandler(image, nil)
                 }
                 // 个人认为这里的 activityItems 应该强制换成 NSItemProvider ，然后我们的 UIActivity 也可以进行统一的检测了~ 这里不统一会很麻烦 ==
                 let vc = UIActivityViewController(activityItems: [self.headImageView.image!, shareURL],
