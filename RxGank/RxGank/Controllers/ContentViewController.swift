@@ -47,10 +47,12 @@ class ContentViewController: UITableViewController {
             .bindTo(tableView.rx_itemsWithDataSource(tvDataSource))
             .addDisposableTo(rx_disposeBag)
         
-        viewModel.image.asDriver().drive(headImageView.rx_image)
+        viewModel.image.asDriver()
+            .drive(headImageView.rx_image)
             .addDisposableTo(rx_disposeBag)
 
-        viewModel.imageLoading.asDriver().drive(imageActivityIndicatorView.rx_animating)
+        viewModel.imageLoading.asDriver()
+            .drive(imageActivityIndicatorView.rx_animating)
             .addDisposableTo(rx_disposeBag)
         
         viewModel.imageLoading.asDriver()

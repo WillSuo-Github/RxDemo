@@ -41,9 +41,9 @@ class TechViewController: UIViewController {
         
         viewModel = TechViewModel(
             input: (
-                refreshTriger: tableView.rx_pullRefresh.asObservable().debug("pull"),
-                loadMoreTriger: tableView.rx_reachedBottom.asObservable().debug("reach"),
-                categoryChangeTriger: segmentedControl.rx_value.map { configureCategory($0) }.asObservable().debug("segment"))
+                refreshTriger: tableView.rx_pullRefresh.asObservable(),
+                loadMoreTriger: tableView.rx_reachedBottom.asObservable(),
+                categoryChangeTriger: segmentedControl.rx_value.map { configureCategory($0) }.asObservable())
         )
         
         viewModel.refreshing.asObservable()

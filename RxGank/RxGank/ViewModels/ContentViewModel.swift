@@ -13,6 +13,8 @@ import RxOptional
 
 typealias ContentSectionModel = AnimatableSectionModel<String, GankModel>
 
+typealias 没卵用 = Int
+
 class ContentViewModel {
     
     let elements = Variable([ContentSectionModel]())
@@ -27,7 +29,7 @@ class ContentViewModel {
     
     private let disposeBag = DisposeBag()
     
-    init(input: (day: Observable<NSDate>, d: Int)) {
+    init(input: (day: Observable<NSDate>, d: 没卵用)) { // 这个 d 并没有什么用，就是占个坑
         
         input.day
             .bindTo(day)
