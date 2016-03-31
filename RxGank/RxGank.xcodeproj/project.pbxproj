@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2604DD271C8FC3E300486263 /* TechTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2604DD261C8FC3E300486263 /* TechTableViewCell.swift */; };
 		2608A1201CA931AF009B2070 /* GankScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A11F1CA931AF009B2070 /* GankScheduler.swift */; };
+		2608A16D1CA98F0E009B2070 /* TableViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A16C1CA98F0E009B2070 /* TableViewModelType.swift */; };
 		262C85CB1C98447E0076373F /* GKSafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262C85CA1C98447E0076373F /* GKSafariActivity.swift */; };
 		26344B8D1C8FABD8008ED4F5 /* GankTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26344B8C1C8FABD8008ED4F5 /* GankTransitionAnimation.swift */; };
 		26344B8F1C8FB7A2008ED4F5 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26344B8E1C8FB7A2008ED4F5 /* Configuration.swift */; };
@@ -35,9 +36,8 @@
 		268490371C82A03E00378065 /* UIStoryBoardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268490331C82A03E00378065 /* UIStoryBoardExtension.swift */; };
 		268490381C82A03E00378065 /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268490341C82A03E00378065 /* Response+ObjectMapper.swift */; };
 		268490391C82A03E00378065 /* Observable+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268490351C82A03E00378065 /* Observable+ObjectMapper.swift */; };
+		26930B671CAD353A001E0B0B /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26930B661CAD353A001E0B0B /* UIViewControllerExtension.swift */; };
 		269F790F1CA8CEAF00FA62BE /* TechViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269F790E1CA8CEAF00FA62BE /* TechViewModel.swift */; };
-		26C7ADF21CA8F5BC002EA00F /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C7ADF11CA8F5BC002EA00F /* UITableViewExtension.swift */; };
-		26C7ADF41CA8FB32002EA00F /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C7ADF31CA8FB32002EA00F /* UIViewControllerExtension.swift */; };
 		26C7ADF61CA902D9002EA00F /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C7ADF51CA902D9002EA00F /* ContentViewModel.swift */; };
 		26DAD2801CA8B8B70054B1E9 /* GirlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DAD27F1CA8B8B70054B1E9 /* GirlViewModel.swift */; };
 		26DAD2821CA8C0050054B1E9 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DAD2811CA8C0050054B1E9 /* ActivityIndicatorView.swift */; };
@@ -74,6 +74,7 @@
 		01CE9328C3BC0813AA5C6364 /* Pods-ShareToGank.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareToGank.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShareToGank/Pods-ShareToGank.debug.xcconfig"; sourceTree = "<group>"; };
 		2604DD261C8FC3E300486263 /* TechTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TechTableViewCell.swift; sourceTree = "<group>"; };
 		2608A11F1CA931AF009B2070 /* GankScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GankScheduler.swift; sourceTree = "<group>"; };
+		2608A16C1CA98F0E009B2070 /* TableViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewModelType.swift; sourceTree = "<group>"; };
 		262C85CA1C98447E0076373F /* GKSafariActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKSafariActivity.swift; sourceTree = "<group>"; };
 		26344B8C1C8FABD8008ED4F5 /* GankTransitionAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GankTransitionAnimation.swift; sourceTree = "<group>"; };
 		26344B8E1C8FB7A2008ED4F5 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
@@ -103,9 +104,8 @@
 		268490331C82A03E00378065 /* UIStoryBoardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoryBoardExtension.swift; sourceTree = "<group>"; };
 		268490341C82A03E00378065 /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
 		268490351C82A03E00378065 /* Observable+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+ObjectMapper.swift"; sourceTree = "<group>"; };
+		26930B661CAD353A001E0B0B /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		269F790E1CA8CEAF00FA62BE /* TechViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TechViewModel.swift; sourceTree = "<group>"; };
-		26C7ADF11CA8F5BC002EA00F /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
-		26C7ADF31CA8FB32002EA00F /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		26C7ADF51CA902D9002EA00F /* ContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		26DAD27F1CA8B8B70054B1E9 /* GirlViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GirlViewModel.swift; sourceTree = "<group>"; };
 		26DAD2811CA8C0050054B1E9 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
@@ -214,9 +214,8 @@
 				268490341C82A03E00378065 /* Response+ObjectMapper.swift */,
 				268490351C82A03E00378065 /* Observable+ObjectMapper.swift */,
 				2684902E1C829D5300378065 /* Observable+Logger.swift */,
-				26C7ADF11CA8F5BC002EA00F /* UITableViewExtension.swift */,
-				26C7ADF31CA8FB32002EA00F /* UIViewControllerExtension.swift */,
 				26F0AC481CA92BE6003D8BA5 /* KingfisherExtension.swift */,
+				26930B661CAD353A001E0B0B /* UIViewControllerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -260,6 +259,7 @@
 				26DAD27F1CA8B8B70054B1E9 /* GirlViewModel.swift */,
 				269F790E1CA8CEAF00FA62BE /* TechViewModel.swift */,
 				26C7ADF51CA902D9002EA00F /* ContentViewModel.swift */,
+				2608A16C1CA98F0E009B2070 /* TableViewModelType.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -493,9 +493,7 @@
 				2604DD271C8FC3E300486263 /* TechTableViewCell.swift in Sources */,
 				268490391C82A03E00378065 /* Observable+ObjectMapper.swift in Sources */,
 				2608A1201CA931AF009B2070 /* GankScheduler.swift in Sources */,
-				26C7ADF41CA8FB32002EA00F /* UIViewControllerExtension.swift in Sources */,
 				268490371C82A03E00378065 /* UIStoryBoardExtension.swift in Sources */,
-				26C7ADF21CA8F5BC002EA00F /* UITableViewExtension.swift in Sources */,
 				2684902D1C829C4300378065 /* NetworkLogger.swift in Sources */,
 				26735FA01C832DB9008B1B52 /* DetailTableViewCell.swift in Sources */,
 				267261AA1C82A70F00078037 /* GirlTableViewCell.swift in Sources */,
@@ -504,6 +502,7 @@
 				269F790F1CA8CEAF00FA62BE /* TechViewModel.swift in Sources */,
 				2684902C1C829C4300378065 /* Logger.swift in Sources */,
 				267261AE1C82BDBD00078037 /* ContentViewController.swift in Sources */,
+				26930B671CAD353A001E0B0B /* UIViewControllerExtension.swift in Sources */,
 				262C85CB1C98447E0076373F /* GKSafariActivity.swift in Sources */,
 				26C7ADF61CA902D9002EA00F /* ContentViewModel.swift in Sources */,
 				26DAD2801CA8B8B70054B1E9 /* GirlViewModel.swift in Sources */,
@@ -516,6 +515,7 @@
 				26DAD2821CA8C0050054B1E9 /* ActivityIndicatorView.swift in Sources */,
 				26344B8D1C8FABD8008ED4F5 /* GankTransitionAnimation.swift in Sources */,
 				267261A81C82A60A00078037 /* GirlTableViewController.swift in Sources */,
+				2608A16D1CA98F0E009B2070 /* TableViewModelType.swift in Sources */,
 				2684901E1C829B5300378065 /* AppDelegate.swift in Sources */,
 				268490361C82A03E00378065 /* RefreshExtension.swift in Sources */,
 			);
@@ -676,6 +676,10 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = RxGank/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
@@ -692,6 +696,10 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = RxGank/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.dianqk.RxGank;

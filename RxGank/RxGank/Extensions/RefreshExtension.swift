@@ -38,6 +38,7 @@ extension UIScrollView {
             .map { $0.y < -_pullToRefreshDefaultHeight }
             .distinctUntilChanged()
             .filter { $0 }
+            .debounce(0.1, scheduler: MainScheduler.instance)
             .map { [unowned self] _ in
                 activityIndicatorView.startAnimating()
                 UIView.animateWithDuration(0.3) {
@@ -108,7 +109,7 @@ extension UIScrollView {
                 let threshold = max(0.0, scrollView.contentSize.height - visibleHeight)
                 
                 return y > threshold ? Observable.just() : Observable.empty()
-        }.throttle(0.3, scheduler: MainScheduler.instance)
+        }.throttle(0.1, scheduler: MainScheduler.instance)
     }
     
 }

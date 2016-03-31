@@ -27,6 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         configureNavgationBar()
         
+        UIView.appearance().tintColor = Config.Color.blackColor
+        
         return true
     }
     

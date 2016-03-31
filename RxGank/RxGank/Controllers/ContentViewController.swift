@@ -26,12 +26,18 @@ class ContentViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        day.asDriver()
+            .map { $0.toString(.Custom("yyyy/MM/dd"))! }
+            .drive(self.rx_title)
+            .addDisposableTo(rx_disposeBag)
+        
         tableView.dataSource = nil
         tableView.delegate = nil
         tableView.sectionFooterHeight = 0
         
         tableView.estimatedRowHeight = 45
         tableView.rowHeight = UITableViewAutomaticDimension
+
         
         let tvDataSource = RxTableViewSectionedReloadDataSource<ContentSectionModel>()
         tvDataSource.configureCell = { (_, tv, ip, i) in
@@ -41,7 +47,7 @@ class ContentViewController: UITableViewController {
         }
         tvDataSource.titleForHeaderInSection = { $0.0.sectionAtIndex($0.1).model }
         
-        viewModel = ContentViewModel(input: (day: day.asObservable(), d: 1))
+        viewModel = ContentViewModel(inputDay: day.asDriver())
         
         viewModel.elements.asObservable()
             .bindTo(tableView.rx_itemsWithDataSource(tvDataSource))

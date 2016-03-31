@@ -17,67 +17,41 @@ class TechViewModel {
     let refreshing = Variable<Bool>(false)
     let loading = Variable<Bool>(false)
     let category = Variable<GankCategory>(.iOS)
-    
-    let loadTriger = PublishSubject<Void>()
-    let refreshTriger = PublishSubject<Void>()
-    let loadMoreTriger = PublishSubject<Void>()
+    let hasNextPage = Variable(true)
     
     private let disposeBag = DisposeBag()
     
     init(
         input: (
-        refreshTriger: Observable<Void>,
-        loadMoreTriger: Observable<Void>,
-        categoryChangeTriger: Observable<GankCategory>
+        refreshTriger: Driver<Void>,
+        loadMoreTriger: Driver<Void>,
+        categoryChangeTriger: Driver<GankCategory>
         )
         ) {
         
-        input.refreshTriger
-            .bindTo(refreshTriger)
-            .addDisposableTo(disposeBag)
+        input.categoryChangeTriger.driveNext {  [unowned self] category in
+            self.category.value = category
+            self.elements.value = []
+            self.page.value = 1
+        }.addDisposableTo(disposeBag)
         
-        input.loadMoreTriger
-            .bindTo(loadMoreTriger)
-            .addDisposableTo(disposeBag)
         
-        input.categoryChangeTriger
-            .bindTo(category)
-            .addDisposableTo(disposeBag)
+        let categoryRequest = input.categoryChangeTriger.map { (category: $0, page: 1) }
         
-        let categoryChange = category.asObservable().shareReplay(1)
+        let categoryData = categoryRequest.flatMapLatest { GankProvider.request(.Category($0.category, Config.Tech.pages, $0.page)).mapArray(GankModel) }
         
-        categoryChange.map { _ in [] }
-            .bindTo(elements)
-            .addDisposableTo(disposeBag)
-        
-        categoryChange.map { _ in 1 }
-            .bindTo(page)
-            .addDisposableTo(disposeBag)
-        
-        let categoryRequest = categoryChange.map { (category: $0, page: 1) }
-            .shareReplay(1)
-        
-        let categoryData = categoryRequest.flatMapLatest { GankProvider.request(.Category($0.category, Config.Tech.pages, $0.page)) }
-            .mapArray(GankModel)
-            .shareReplay(1)
-        
-        let refreshRequest = refreshTriger
+        let refreshRequest = input.refreshTriger
             .map {1}
-            .shareReplay(1)
         
         let refreshData = refreshRequest.map { [unowned self] in (category: self.category.value, page: $0) }
-            .flatMapLatest { GankProvider.request(.Category($0.category, Config.Tech.pages, $0.page)) }
-            .mapArray(GankModel)
-            .shareReplay(1)
+            .flatMapLatest { GankProvider.request(.Category($0.category, Config.Tech.pages, $0.page)).mapArray(GankModel) }
         
-        let loadMoreRequest = [loadMoreTriger, loadTriger].toObservable()
-            .merge()
-            .withLatestFrom(page.asObservable())
+        
+        let loadMoreRequest = input.loadMoreTriger
+            .withLatestFrom(page.asDriver())
         
         let loadMoreData = loadMoreRequest.map { [unowned self] in (category: self.category.value, page: $0) }
-            .flatMapLatest { GankProvider.request(.Category($0.category, Config.Tech.pages, $0.page)) }
-            .mapArray(GankModel)
-            .shareReplay(1)
+            .flatMapLatest { GankProvider.request(.Category($0.category, Config.Tech.pages, $0.page)).mapArray(GankModel) }
         
         [categoryRequest.map { _ in true }, categoryData.map { _ in false }]
             .toObservable()
@@ -91,25 +65,41 @@ class TechViewModel {
             .bindTo(refreshing)
             .addDisposableTo(disposeBag)
         
-        [refreshData.map { _ in true }, loadMoreData.map { _ in false }]
-            .toObservable()
-            .merge()
-            .scan(page.value) { $1 ? 2 : $0 + 1 }
-            .bindTo(page)
-            .addDisposableTo(disposeBag)
-        
         [loadMoreRequest.map { _ in true }, loadMoreData.map { _ in false }]
             .toObservable()
             .merge()
             .bindTo(loading)
             .addDisposableTo(disposeBag)
         
-        [refreshData.map { ($0, true) }, loadMoreData.map { ($0, false) }, categoryData.map { ($0, true) }]
-            .toObservable()
-            .merge()
-            .scan(elements.value) { $1.1 ? $1.0 : $0 + $1.0 }
-            .bindTo(elements)
-            .addDisposableTo(disposeBag)
+        refreshData.driveNext { [unowned self] in
+            if case let .Success(data) = $0 {
+                self.page.value = 2
+                self.elements.value = data
+                if data.isEmpty {
+                    self.hasNextPage.value = false
+                }
+            }
+            }.addDisposableTo(disposeBag)
+        
+        loadMoreData.driveNext { [unowned self] in
+            if case let .Success(data) = $0 {
+                self.page.value += 1
+                self.elements.value += data
+                if data.isEmpty {
+                    self.hasNextPage.value = false
+                }
+            }
+            }.addDisposableTo(disposeBag)
+        
+        categoryData.driveNext { [unowned self] in
+            if case let .Success(data) = $0 {
+                self.page.value = 2
+                self.elements.value = data
+                if data.isEmpty {
+                    self.hasNextPage.value = false
+                }
+            }
+            }.addDisposableTo(disposeBag)
         
     }
     

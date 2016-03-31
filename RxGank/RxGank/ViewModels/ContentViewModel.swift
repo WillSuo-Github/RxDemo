@@ -29,42 +29,36 @@ class ContentViewModel {
     
     private let disposeBag = DisposeBag()
     
-    init(input: (day: Observable<NSDate>, d: 没卵用)) { // 这个 d 并没有什么用，就是占个坑
+    init(inputDay: Driver<NSDate>) { // 这个 d 并没有什么用，就是占个坑
         
-        input.day
-            .bindTo(day)
+        let data = inputDay
+            .flatMapLatest { GankProvider.request(.Day($0)).mapObject(DayModel) }
+        
+        data.driveNext {
+            if case let .Success(data) = $0 {
+                self.elements.value = data.results.map { ContentSectionModel(model: $0.0, items: $0.1) }
+            }
+        }.addDisposableTo(disposeBag)
+        
+        data.flatMapLatest { result -> Driver<NSURLRequest> in
+            if case let .Success(data) = result {
+                return Driver.just(NSURLRequest(URL: NSURL(string: data.results["福利"]!.first!.url)!))
+            } else {
+                return Driver.empty()
+            }
+            }.flatMapLatest { NSURLSession.sharedSession().rx_data($0).map { UIImage(data: $0) }.asDriver(onErrorJustReturn: nil) }
+            .driveNext {
+                self.image.value = $0
+            }
             .addDisposableTo(disposeBag)
         
-        let request = day.asObservable()
-            .shareReplay(1)
-        
-        let data = request
-            .flatMapLatest { GankProvider.request(.Day($0)) }
-            .mapObject(DayModel)
-            .shareReplay(1)
-            
-        data.map { $0.results.map { ContentSectionModel(model: $0.0, items: $0.1) } }
-            .bindTo(elements)
-            .addDisposableTo(disposeBag)
-        
-        let imageRequest = data.map { $0.results["福利"]?.first?.url }.filterNil()
-            .map { NSURL(string: $0) }.filterNil()
-            .map { NSURLRequest(URL: $0) }
-            .shareReplay(1)
-        
-        imageRequest
-            .flatMapLatest { NSURLSession.sharedSession().rx_data($0) }
-            .map { UIImage(data: $0) }
-            .bindTo(image)
-            .addDisposableTo(disposeBag)
-        
-        [request.map { _ in true }, data.map { _ in false }]
+        [inputDay.map { _ in true }, data.map { _ in false }]
             .toObservable()
             .merge()
             .bindTo(loadTriger)
             .addDisposableTo(disposeBag)
         
-        [imageRequest.map { _ in true }, image.asObservable().map { _ in false}]
+        [data.asObservable().map { _ in true }, image.asObservable().map { _ in false }]
             .toObservable()
             .merge()
             .bindTo(imageLoading)

@@ -9,6 +9,24 @@
 import UIKit
 import TransitionTreasury
 
+protocol TabBarTransitionType: class {}
+
+extension TabBarTransitionType where Self: UIViewController {
+    
+    func configureEdgePanGesture(edges: UIRectEdge, selected: Int) -> UIScreenEdgePanGestureRecognizer {
+        let gesture = UIScreenEdgePanGestureRecognizer()
+        gesture.edges = edges
+        gesture.rx_event
+            .filter { $0.state == .Began }
+            .subscribeNext { [unowned self] in
+                self.tabBarController?.tr_selected(selected, gesture: $0)
+            }
+            .addDisposableTo(rx_disposeBag)
+        return gesture
+    }
+    
+}
+
 enum GankTransition: TransitionAnimationable {
     case Slide
     

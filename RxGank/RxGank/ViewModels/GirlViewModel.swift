@@ -8,65 +8,60 @@
 
 import RxSwift
 import RxCocoa
+import Moya
 
 class GirlViewModel {
     
-    let loadTriger = PublishSubject<Void>()
-    let refreshTriger = PublishSubject<Void>()
-    let loadMoreTriger = PublishSubject<Void>()
-    
     let elements = Variable([GankModel]())
     let page = Variable(1)
+    let hasNextPage = Variable(true)
     
-    let refreshing = Variable<Bool>(false)
-    let loading = Variable<Bool>(false)
+    let refreshing = Variable(false)
+    let loading = Variable(false)
     
     private let disposeBag = DisposeBag()
     
     init(
         input: (
-        refreshTriger: Observable<Void>,
-        loadMoreTriger: Observable<Void>
+        refreshTriger: Driver<Void>,
+        loadMoreTriger: Driver<Void>
         )
         ) {
         
-        input.refreshTriger
-            .bindTo(refreshTriger)
-            .addDisposableTo(disposeBag)
         
-        input.loadMoreTriger
-            .bindTo(loadMoreTriger)
-            .addDisposableTo(disposeBag)
-        
-        let refreshRequest = refreshTriger
+        let refreshRequest = input.refreshTriger
             .map {1}
-            .shareReplay(1)
         
         let refreshData = refreshRequest
-            .flatMapLatest { GankProvider.request(.Category(.福利, Config.Girl.pages, $0)) }
-            .mapArray(GankModel)
-            .shareReplay(1)
+            .flatMapLatest { GankProvider.request(.Category(.福利, Config.Girl.pages, $0)).mapArray(GankModel) }
         
-        let loadMoreRequest = [loadMoreTriger, loadTriger].toObservable()
-            .merge()
-            .withLatestFrom(page.asObservable())
+        let loadMoreRequest = input.loadMoreTriger
+            .withLatestFrom(page.asDriver())
         
         let loadMoreData = loadMoreRequest
-            .flatMapLatest { GankProvider.request(.Category(.福利, Config.Girl.pages, $0)) }
-            .mapArray(GankModel)
-            .shareReplay(1)
+            .flatMapLatest { GankProvider.request(.Category(.福利, Config.Girl.pages, $0)).mapArray(GankModel) }
+        
+        refreshData.driveNext {
+            if case let .Success(data) = $0 {
+                self.page.value = 2
+                self.elements.value = data
+            }
+            }.addDisposableTo(disposeBag)
+        
+        loadMoreData.driveNext {
+            if case let .Success(data) = $0 {
+                self.page.value += 1
+                self.elements.value += data
+                if data.isEmpty {
+                    self.hasNextPage.value = false
+                }
+            }
+            }.addDisposableTo(disposeBag)
         
         [refreshRequest.map { _ in true }, refreshData.map { _ in false }]
             .toObservable()
             .merge()
             .bindTo(refreshing)
-            .addDisposableTo(disposeBag)
-        
-        [refreshData.map { _ in true }, loadMoreData.map { _ in false }]
-            .toObservable()
-            .merge()
-            .scan(page.value) { $1 ? 2 : $0 + 1 }
-            .bindTo(page)
             .addDisposableTo(disposeBag)
         
         [loadMoreRequest.map { _ in true }, loadMoreData.map { _ in false }]
@@ -75,11 +70,6 @@ class GirlViewModel {
             .bindTo(loading)
             .addDisposableTo(disposeBag)
         
-        [refreshData.map { ($0, true) }, loadMoreData.map { ($0, false) }]
-            .toObservable()
-            .merge()
-            .scan(elements.value) { $1.1 ? $1.0 : $0 + $1.0 }
-            .bindTo(elements).addDisposableTo(disposeBag)
         
     }
     

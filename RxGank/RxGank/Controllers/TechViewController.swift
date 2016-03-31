@@ -14,7 +14,7 @@ import SwiftDate
 import SafariServices
 import NSObject_Rx
 
-class TechViewController: UIViewController {
+class TechViewController: UIViewController, TabBarTransitionType {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
@@ -41,27 +41,28 @@ class TechViewController: UIViewController {
         
         viewModel = TechViewModel(
             input: (
-                refreshTriger: tableView.rx_pullRefresh.asObservable(),
-                loadMoreTriger: tableView.rx_reachedBottom.asObservable(),
-                categoryChangeTriger: segmentedControl.rx_value.map { configureCategory($0) }.asObservable())
+                refreshTriger: tableView.rx_pullRefresh.asDriver(onErrorJustReturn: ()),
+                loadMoreTriger: tableView.rx_reachedBottom.asDriver(onErrorJustReturn: ()),
+                categoryChangeTriger: segmentedControl.rx_value.map { configureCategory($0) }.asDriver(onErrorJustReturn: .iOS))
         )
         
-        viewModel.refreshing.asObservable()
-            .bindTo(tableView.rx_pullRefreshAnimating)
+        viewModel.refreshing.asDriver()
+            .drive(tableView.rx_pullRefreshAnimating)
             .addDisposableTo(rx_disposeBag)
         
-        viewModel.loading.asObservable()
-            .bindTo(loadActivityIndicatorView.rx_animating)
+        viewModel.loading.asDriver()
+            .drive(loadActivityIndicatorView.rx_animating)
             .addDisposableTo(rx_disposeBag)
         
-        viewModel.elements.asObservable()
-            .bindTo(tableView.rx_itemsWithCellIdentifier("\(TechTableViewCell.self)", cellType: TechTableViewCell.self)) { _, v, cell in
+        viewModel.elements.asDriver()
+            .drive(tableView.rx_itemsWithCellIdentifier("\(TechTableViewCell.self)", cellType: TechTableViewCell.self)) { _, v, cell in
                 cell.contentTitleLabel.text = v.desc
                 cell.contentTimeLabel.text = v.publishedAt.toDate(.ISO8601Format(.Extended))?.toString() ?? "unknown"
             }
             .addDisposableTo(rx_disposeBag)
         
-        viewModel.elements.asObservable().map { !$0.isEmpty }
+        viewModel.elements.asObservable()
+            .map { $0.isNotEmpty }
             .bindTo(tableView.rx_scrollEnabled)
             .addDisposableTo(rx_disposeBag)
         

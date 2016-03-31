@@ -12,7 +12,7 @@ import Kingfisher
 import SwiftDate
 import NSObject_Rx
 
-class GirlTableViewController: UITableViewController {
+class GirlTableViewController: UITableViewController, TabBarTransitionType {
     
     var viewModel: GirlViewModel!
 
@@ -26,26 +26,27 @@ class GirlTableViewController: UITableViewController {
         
         viewModel = GirlViewModel(
             input: (
-                refreshTriger: tableView.rx_pullRefresh.asObservable(),
-                loadMoreTriger: tableView.rx_reachedBottom.asObservable())
+                refreshTriger: tableView.rx_pullRefresh.asDriver(onErrorJustReturn: ()),
+                loadMoreTriger: tableView.rx_reachedBottom.asDriver(onErrorJustReturn: ()).startWith(()))
         )
         
-        viewModel.refreshing.asObservable()
-            .bindTo(tableView.rx_pullRefreshAnimating)
+        viewModel.refreshing.asDriver()
+            .drive(tableView.rx_pullRefreshAnimating)
             .addDisposableTo(rx_disposeBag)
         
-        viewModel.loading.asObservable()
-            .bindTo(loadActivityIndicatorView.rx_animating)
+        viewModel.loading.asDriver()
+            .drive(loadActivityIndicatorView.rx_animating)
             .addDisposableTo(rx_disposeBag)
         
-        viewModel.elements.asObservable()
-            .bindTo(tableView.rx_itemsWithCellIdentifier("\(GirlTableViewCell.self)", cellType: GirlTableViewCell.self)) { _, v, cell in
+        viewModel.elements.asDriver()
+            .drive(tableView.rx_itemsWithCellIdentifier("\(GirlTableViewCell.self)", cellType: GirlTableViewCell.self)) { _, v, cell in
                 cell.contentImageView.kf_setImageWithURL(NSURL(string: v.url)!)
             }
             .addDisposableTo(rx_disposeBag)
         
-        viewModel.elements.asObservable().map { !$0.isEmpty }
-            .bindTo(tableView.rx_scrollEnabled)
+        viewModel.elements.asDriver()
+            .map { $0.isNotEmpty }
+            .drive(tableView.rx_scrollEnabled)
             .addDisposableTo(rx_disposeBag)
         
         tableView.rx_modelSelected(GankModel)
@@ -54,10 +55,6 @@ class GirlTableViewController: UITableViewController {
                 contentViewController.day.value = model.publishedAt.toDate(.ISO8601Format(.Extended))!
                 self.navigationController?.pushViewController(contentViewController, animated: true)
             }
-            .addDisposableTo(rx_disposeBag)
-        
-        Observable.just(())
-            .bindTo(viewModel.loadTriger)
             .addDisposableTo(rx_disposeBag)
         
         view.addGestureRecognizer(configureEdgePanGesture(.Right, selected: 1))

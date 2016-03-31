@@ -83,11 +83,11 @@
             </objects>
             <point key="canvasLocation" x="-83.733333333333334" y="-76.679999999999993"/>
         </scene>
-        <!--Item-->
+        <!--分类-->
         <scene sceneID="KU5-cD-4Ts">
             <objects>
                 <navigationController hidesBottomBarWhenPushed="YES" id="sah-PK-zGC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="GbR-Wv-Ccc"/>
+                    <tabBarItem key="tabBarItem" title="分类" id="GbR-Wv-Ccc"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ImU-FB-g5g">
@@ -210,7 +210,11 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Tech" id="8Ji-nH-l4I"/>
-                    <navigationItem key="navigationItem" title="分类" id="TwJ-FP-uuV"/>
+                    <navigationItem key="navigationItem" title="分类" id="TwJ-FP-uuV">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="88f-Xb-iZT">
+                            <color key="tintColor" red="0.1764705882" green="0.1764705882" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="segmentedControl" destination="gUH-R4-bAi" id="f2C-WL-7jj"/>
